@@ -38,7 +38,7 @@ function getLanguageInstruction(language: string): string {
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT || 3000);
 
   // Set response limits high enough for extremely long transcripts
   app.use(express.json({ limit: "20mb" }));
@@ -49,13 +49,13 @@ async function startServer() {
     if (!ai) {
       const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
-        throw new Error("GEMINI_API_KEY 尚未配置。請前往 AI Studio 內部的 [Settings > Secrets] 進行設定。");
+        throw new Error("GEMINI_API_KEY 尚未配置。請在 Render 的 Environment 變數或本地 .env 檔中設定此金鑰。\n例如：GEMINI_API_KEY=YOUR_GEMINI_API_KEY");
       }
       ai = new GoogleGenAI({
         apiKey: apiKey,
         httpOptions: {
           headers: {
-            "User-Agent": "aistudio-build",
+            "User-Agent": "ai-analytics-app",
           },
         },
       });

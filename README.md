@@ -2,19 +2,25 @@
 <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# AI Analytics App
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/d4ab082c-63c9-41d8-ba30-9f77d103953f
+This repository contains a React + Express application that can be deployed to Render or run locally.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. Create a `.env` file and set your Gemini API key:
+   `GEMINI_API_KEY=YOUR_GEMINI_API_KEY`
 3. Run the app:
    `npm run dev`
+
+## Deploy to Render
+
+1. Set the `Build Command` to:
+   `npm install && npm run build`
+2. Set the `Start Command` to:
+   `npm start`
+3. Add the environment variable `GEMINI_API_KEY` in Render.
